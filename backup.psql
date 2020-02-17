@@ -1,0 +1,119 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: convenio; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.convenio (
+    idconvenio integer NOT NULL,
+    sector character varying(100),
+    tipoconvenio character varying(100),
+    gradoacademico character varying(100),
+    ciclo character varying(100),
+    carrera character varying(100),
+    institucioneducativa character varying(255),
+    vigencia date,
+    delegacion character varying(100)
+);
+
+
+ALTER TABLE public.convenio OWNER TO postgres;
+
+--
+-- Name: convenio_idconvenio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.convenio_idconvenio_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.convenio_idconvenio_seq OWNER TO postgres;
+
+--
+-- Name: convenio_idconvenio_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.convenio_idconvenio_seq OWNED BY public.convenio.idconvenio;
+
+
+--
+-- Name: idconvenio; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.convenio ALTER COLUMN idconvenio SET DEFAULT nextval('public.convenio_idconvenio_seq'::regclass);
+
+
+--
+-- Data for Name: convenio; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.convenio (idconvenio, sector, tipoconvenio, gradoacademico, ciclo, carrera, institucioneducativa, vigencia, delegacion) FROM stdin;
+1	Privado	General				Universidad de Morelia	2028-04-20	Michoacán
+3	Privado	General				Universidad Hipócrates	2020-06-28	Guerrero
+6	Privado	General				Universidad Hipócrates	2020-06-28	México
+8	Privado	General				Universidad Hipócrates	2020-06-28	México
+\.
+
+
+--
+-- Name: convenio_idconvenio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.convenio_idconvenio_seq', 8, true);
+
+
+--
+-- Name: convenio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.convenio
+    ADD CONSTRAINT convenio_pkey PRIMARY KEY (idconvenio);
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
